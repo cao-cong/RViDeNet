@@ -10,7 +10,7 @@ This repository contains official implementation of Supervised Raw Video Denoisi
 
 ## Data
 
-### Synthesize Data
+### Synthesized Data
 
 ### Captured Raw Video Denoising Dataset (CRVD Dataset)
 
