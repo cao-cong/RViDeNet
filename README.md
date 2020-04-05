@@ -16,7 +16,7 @@ This repository contains official implementation of Supervised Raw Video Denoisi
 
 ### Requirement
 
-### Prepare data
+### Prepare Data
 
 ### Test
 
