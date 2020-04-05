@@ -8,6 +8,12 @@ This repository contains official implementation of Supervised Raw Video Denoisi
 
 ## Demo Video
 
-## Code and Data
+## Data
+
+### Synthesized Raw Video Dataset (SRVD dataset)
+
+### Captured Raw Video Dataset (CRVD dataset)
+
+## Data
 
 ## Citation
