@@ -1,4 +1,4 @@
-# Supervised Raw Video Denoising with a Benchmark Dataset on Dynamic Scenes
+# Supervised Raw Video Denoising with a Benchmark Dataset on Dynamic Scenes (RViDeNet)
 
 This repository contains official implementation of Supervised Raw Video Denoising with a Benchmark Dataset on Dynamic Scenes in CVPR 2020, by Huanjing Yue, Cong Cao, Lei Liao, Ronghe Chu, and Jingyu Yang.
 
