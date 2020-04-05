@@ -1,6 +1,6 @@
 # Supervised Raw Video Denoising with a Benchmark Dataset on Dynamic Scenes
 
-This is a Pytorch implementation of Supervised Raw Video Denoising with a Benchmark Dataset on Dynamic Scenes in CVPR 2020, by Huanjing Yue, Cong Cao, Lei Liao, Ronghe Chu, and Jingyu Yang.
+This repository contains official implementation of Supervised Raw Video Denoising with a Benchmark Dataset on Dynamic Scenes in CVPR 2020, by Huanjing Yue, Cong Cao, Lei Liao, Ronghe Chu, and Jingyu Yang.
 
 ## Paper
 
