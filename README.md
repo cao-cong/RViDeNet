@@ -22,8 +22,8 @@ This repository contains official implementation of Supervised Raw Video Denoisi
   <img width="600" src="https://github.com/cao-cong/RViDeNet/blob/master/images/dataset.png">
 </p>
 
-[Arxiv](https://arxiv.org/pdf/2003.14013.pdf)<br/>
-[Google Drive] [Baidu Drive]<br/>
+[Baidu Drive](https://arxiv.org/pdf/2003.14013.pdf)<br/>
+[Google Drive] []<br/>
 
 ## Code
 
