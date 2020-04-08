@@ -22,7 +22,7 @@ This repository contains official implementation of Supervised Raw Video Denoisi
   <img width="600" src="https://github.com/cao-cong/RViDeNet/blob/master/images/dataset.png">
 </p>
 
-You can download it from [Google Drive] and [Baidu Drive](https://pan.baidu.com/s/14BcpkU1G4AdF_DrxS1nd5Q#list/path=%2F)(uj8n).
+You can download it from [Google Drive] or [Baidu Drive](https://pan.baidu.com/s/14BcpkU1G4AdF_DrxS1nd5Q#list/path=%2F)(uj8n). We also provide original averaged frame (without applying BM3D) in folder "indoor_raw_noisy", named like "frameXX_clean.tiff". You can apply your ISP to raw data to generate your sRGB data.
 
 ## Code
 
@@ -36,6 +36,6 @@ You can download it from [Google Drive] and [Baidu Drive](https://pan.baidu.com/
 
 ## Citation
 
-If you use our code and dataset for research, please cite our paper:
+If you use our code or dataset for research, please cite our paper:
 
 Huanjing Yue, Cong Cao, Lei Liao, Ronghe Chu, and Jingyu Yang, "Supervised Raw Video Denoising with a Benchmark Dataset on Dynamic Scenes", in CVPR, 2020.
