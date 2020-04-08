@@ -18,12 +18,12 @@ This repository contains official implementation of Supervised Raw Video Denoisi
 
 ### Captured Raw Video Denoising Dataset (CRVD Dataset)
 
-[Google Drive]<br/>
-[Baidu Drive](https://pan.baidu.com/s/14BcpkU1G4AdF_DrxS1nd5Q#list/path=%2F)<br/>
-
 <p align="center">
   <img width="600" src="https://github.com/cao-cong/RViDeNet/blob/master/images/dataset.png">
 </p>
+
+[Google Drive]<br/>
+[Baidu Drive](https://pan.baidu.com/s/14BcpkU1G4AdF_DrxS1nd5Q#list/path=%2F)<br/>
 
 ## Code
 
