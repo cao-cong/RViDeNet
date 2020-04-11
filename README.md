@@ -28,6 +28,12 @@ You can download our dataset from [Google Drive] or [Baidu Drive](https://pan.ba
 
 ### Requirement
 
+- ubuntu
+- Python 3.5
+- NVIDIA GPU + CUDA 9.0 + CuDNN 7
+- Pytorch 1.0
+- Tensorflow 1.5 gpu (only to synthesize raw dataset)
+
 ### Prepare Data
 
 ### Test
