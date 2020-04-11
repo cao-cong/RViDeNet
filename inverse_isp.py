@@ -29,7 +29,7 @@ import numpy as np
 
 def ccm():
   """Generates random RGB -> Camera color correction matrices."""
-  # Fixed XYZ -> Camera CCMs
+  # Fixed XYZ -> Camera CCM.
   cam2xyz = [0.4679,0.2145,0.3176],[0.1433,0.8236,0.0331],[0.0003,-0.3607,1.3604]
   xyz2cam = tf.convert_to_tensor(np.linalg.inv(np.array(cam2xyz)),dtype = np.float32)
 
