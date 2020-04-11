@@ -36,6 +36,12 @@ You can download our dataset from [Google Drive] or [Baidu Drive](https://pan.ba
 
 ### Prepare Data
 
+- Download CRVD dataset
+- Prepare synthesized raw video denoising dataset. Please download [MOT Challenge dataset](https://motchallenge.net/data/MOT17Det/) and select four videos (02, 09, 10, 11) from train set. To convert sRGB video to raw video, run
+```bash
+python sRGB_to_raw.py
+```
+
 ### Test
 
 ### Train
