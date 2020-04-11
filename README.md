@@ -46,7 +46,7 @@ To generate raw noisy videos from raw clean videos, run:
 ```bash
 python synthesize_noise.py
 ```
-- Download captured raw video denoising dataset(CRVD dataset) to finetune RViDeNet.
+- Download captured raw video denoising dataset (CRVD dataset) to finetune RViDeNet.
 
 ### Train
 
