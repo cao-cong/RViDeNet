@@ -28,7 +28,7 @@ You can download our dataset from [Google Drive] or [Baidu Drive](https://pan.ba
 
 ### Requirement
 
-- ubuntu
+- Ubuntu
 - Python 3.5
 - NVIDIA GPU + CUDA 9.0 + CuDNN 7
 - Pytorch 1.0
@@ -36,8 +36,8 @@ You can download our dataset from [Google Drive] or [Baidu Drive](https://pan.ba
 
 ### Prepare Data
 
-Download CRVD dataset.<br/>
-Prepare synthesized raw video denoising dataset. Please download [MOT Challenge dataset](https://motchallenge.net/data/MOT17Det/) and select four videos (02, 09, 10, 11) from train set. To convert sRGB clean videos to raw clean videos, run:
+- Prepare synthesized raw video denoising dataset. 
+Please download [MOT Challenge dataset](https://motchallenge.net/data/MOT17Det/) and select four videos (02, 09, 10, 11) from train set. To convert sRGB clean videos to raw clean videos, run:
 ```bash
 python sRGB_to_raw.py
 ```
@@ -45,6 +45,9 @@ To generate raw noisy videos from raw clean videos, run:
 ```bash
 python synthesize_noise.py
 ```
+- Download captured raw video denoising dataset(CRVD dataset).
+
+
 ### Test
 
 ### Train
