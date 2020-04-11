@@ -18,19 +18,19 @@ def read_jpg(filename):
     return tf.cast(image, tf.float32) / 255.0
 
 def read_img(filename):
-    """Read images in most common formats """
+    """Read images in most common formats."""
     image_file = tf.read_file(filename)
     image = tf.image.decode_image(image_file, channels=3)
     return tf.cast(image, tf.float32) / 255.0
 
 def convert_to_raw(image):
-    """Unprocess sRGB to packed raw"""
+    """Unprocess sRGB to packed raw."""
     image.shape.assert_is_compatible_with([None, None, 3])
     image, metadata = inverse_isp.unprocess(image)
     return image, metadata
 
 def depack_gbrg_raw(raw):
-    """depack packed raw to generate GBRG Bayer raw"""
+    """Depack packed raw to generate GBRG Bayer raw."""
     H = raw.shape[0]
     W = raw.shape[1]
     output = np.zeros((H*2,W*2))
