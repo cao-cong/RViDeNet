@@ -18,7 +18,7 @@ def read_jpg(filename):
     return tf.cast(image, tf.float32) / 255.0
 
 def read_img(filename):
-    """Read images in most formats."""
+    """Read an image in most formats."""
     image_file = tf.read_file(filename)
     image = tf.image.decode_image(image_file, channels=3)
     return tf.cast(image, tf.float32) / 255.0
