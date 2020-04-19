@@ -59,7 +59,10 @@ You can download our dataset from [Google Drive] or [Baidu Netdisk](https://pan.
 
 ### Test
 
+- Please download our model from [Google Drive] or [Baidu Netdisk](https://pan.baidu.com/s/16nVuu1fGMS0LJqU4z4LAUQ) (xssc).
+- Test pretrained RViDeNet on test set (scene 7, 8, 9, 10, 11) of CRVD dataset.
 
+- Test finetuned RViDeNet on test set (scene 7, 8, 9, 10, 11) of CRVD dataset.
 
 ### Train
 
