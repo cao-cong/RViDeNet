@@ -35,8 +35,13 @@ You can download our dataset from [Google Drive] or [Baidu Netdisk](https://pan.
 - Tensorflow 1.5 gpu (only to synthesize raw data)
 - Deformable Convolution
   ```
-  cd ./codes/models/modules/DCNv2
+  cd ./modules/DCNv2
   bash make.sh
+  ```
+- Criss-Cross Attention
+  ```
+  cd ./modules/cc_attention
+  python setup.py develop
   ```
 
 ### Prepare Data
