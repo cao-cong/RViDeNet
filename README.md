@@ -34,11 +34,13 @@ You can download our dataset from [Google Drive] or [Baidu Netdisk](https://pan.
 - Pytorch 1.0
 - Tensorflow 1.5 gpu (only to synthesize raw data)
 - Deformable Convolution
-  ```bash
+
+  ```
   cd ./modules/DCNv2
   bash make.sh
   ```
 - Criss-Cross Attention
+
   ```
   cd ./modules/cc_attention
   python setup.py develop
