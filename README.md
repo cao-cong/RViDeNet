@@ -26,13 +26,18 @@ You can download our dataset from [Google Drive] or [Baidu Netdisk](https://pan.
 
 ## Code
 
-### Requirement
+### Dependencies and Installation
 
 - Ubuntu
 - Python 3.5
 - NVIDIA GPU + CUDA 9.0 + CuDNN 7
 - Pytorch 1.0
 - Tensorflow 1.5 gpu (only to synthesize raw data)
+- Deformable Convolution
+  ```
+  cd ./codes/models/modules/DCNv2
+  bash make.sh
+  ```
 
 ### Prepare Data
 
@@ -48,6 +53,8 @@ python synthesize_noise.py
 - Download captured raw video denoising dataset (CRVD dataset) to finetune RViDeNet.
 
 ### Test
+
+
 
 ### Train
 
