@@ -43,13 +43,13 @@ You can download our dataset from [Google Drive] or [Baidu Netdisk](https://pan.
 
 - Download [SID dataset](https://github.com/cchen156/Learning-to-See-in-the-Dark). Select raw clean images to generate raw noisy images to train PreDenoising module, select raw clean images and corresponding sRGB clean images to train ISP module.
 - Prepare synthesized raw video denoising dataset (SRVD dataset) to pretrain RViDeNet. Please download [MOT Challenge dataset](https://motchallenge.net/data/MOT17Det/) and select four videos (02, 09, 10, 11) from train set. To convert sRGB clean videos to raw clean videos, run:
-```bash
-python sRGB_to_raw.py
-```
+  ```
+  python sRGB_to_raw.py
+  ```
 To generate raw noisy videos from raw clean videos, run:
-```bash
-python synthesize_noise.py
-```
+  ```
+  python synthesize_noise.py
+  ```
 - Download captured raw video denoising dataset (CRVD dataset) to finetune RViDeNet.
 
 ### Test
