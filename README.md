@@ -46,7 +46,7 @@ You can download our dataset from [Google Drive] or [Baidu Netdisk](https://pan.
   ```
   python sRGB_to_raw.py
   ```
-To generate raw noisy videos from raw clean videos, run:
+- To generate raw noisy videos from raw clean videos, run:
   ```
   python synthesize_noise.py
   ```
