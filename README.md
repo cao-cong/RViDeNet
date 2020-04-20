@@ -73,6 +73,13 @@ You can download our dataset from [Google Drive] or [Baidu Netdisk](https://pan.
 
 ## Citation
 
-If you use our code or dataset for research, please cite our paper:
+If you find our dataset or code helpful in your research or work, please cite our paper:
 
-Huanjing Yue, Cong Cao, Lei Liao, Ronghe Chu, and Jingyu Yang, "Supervised Raw Video Denoising with a Benchmark Dataset on Dynamic Scenes", in CVPR, 2020.
+```
+@inproceedings{yue2020supervised,
+  title={Supervised Raw Video Denoising with a Benchmark Dataset on Dynamic Scenes},
+  author={Yue, Huanjing and Cao, Cong and Liao, Lei and Chu, Ronghe and Yang, Jingyu},
+  journal={IEEE Conference on Computer Vision and Pattern Recognition},
+  year={2020}
+}
+```
