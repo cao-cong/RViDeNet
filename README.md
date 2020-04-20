@@ -85,5 +85,8 @@ If you find our dataset or code helpful in your research or work, please cite ou
 ```
 ### Acknowledgement
 
-Our work and implementations are inspired by following projects:
+Our work and implementations are inspired by following projects:<br/>
 [EDVR] (https://github.com/xinntao/EDVR)
+[SID] (https://github.com/cchen156/Learning-to-See-in-the-Dark)
+[DANet] (https://github.com/junfu1115/DANet)
+[CCNet] (https://github.com/speedinghzl/CCNet)
