@@ -79,7 +79,7 @@ If you find our dataset or code helpful in your research or work, please cite ou
 @inproceedings{yue2020supervised,
   title={Supervised Raw Video Denoising with a Benchmark Dataset on Dynamic Scenes},
   author={Yue, Huanjing and Cao, Cong and Liao, Lei and Chu, Ronghe and Yang, Jingyu},
-  journal={IEEE Conference on Computer Vision and Pattern Recognition},
+  booktitle={IEEE Conference on Computer Vision and Pattern Recognition},
   year={2020}
 }
 ```
