@@ -59,7 +59,7 @@ You can download our dataset from [Google Drive] or [Baidu Netdisk](https://pan.
 
 ### Test
 
-- Please download trained model from [Google Drive] or [Baidu Netdisk](https://pan.baidu.com/s/16nVuu1fGMS0LJqU4z4LAUQ) (xssc).
+- Please download trained model from [Google Drive](https://drive.google.com/open?id=1UdP2Pnn6lHeLC6TUN21sq81XyqL3ujNg) or [Baidu Netdisk](https://pan.baidu.com/s/16nVuu1fGMS0LJqU4z4LAUQ) (xssc).
 - Test pretrained RViDeNet on indoor test set (scene 7, 8, 9, 10, 11) of CRVD dataset.
   ```
   python test_indoor.py --model pretrain --gpu_id 0  --output_dir ./results/pretrain/ --vis_data True
