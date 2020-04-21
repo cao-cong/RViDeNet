@@ -71,7 +71,7 @@ You can download our dataset from [MEGA](https://mega.nz/file/Hx8TgLQY#0MoZSqdrQ
 
 ### Train
 
-### Citation
+## Citation
 
 If you find our dataset or code helpful in your research or work, please cite our paper:
 
@@ -83,7 +83,7 @@ If you find our dataset or code helpful in your research or work, please cite ou
   year={2020}
 }
 ```
-### Acknowledgement
+## Acknowledgement
 
 Our work and implementations are inspired by following projects:<br/>
 [EDVR] (https://github.com/xinntao/EDVR)<br/>
