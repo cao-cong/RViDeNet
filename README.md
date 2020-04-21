@@ -22,7 +22,7 @@ This repository contains official implementation of Supervised Raw Video Denoisi
   <img width="600" src="https://github.com/cao-cong/RViDeNet/blob/master/images/dataset.png">
 </p>
 
-You can download our dataset from [Mega](https://mega.nz/file/Hx8TgLQY)(key:0MoZSqdrQ_HgIc4OP6_jmwAwupNctPc7ZilXLV_FAQ0) or [Baidu Netdisk](https://pan.baidu.com/s/13p1I2j18ZCCACaR_zoFavw)(key:cdux). We also provide original averaged frame (without applying BM3D) in folder "indoor_raw_noisy", named like "frameXX_clean.tiff". The Bayer pattern of raw data is GBRG, the black level is 240, the white level is 2^12-1. You can apply your ISP to raw data to generate sRGB video denoising data.
+You can download our dataset from [Mega](https://mega.nz/file/Hx8TgLQY) (key:0MoZSqdrQ_HgIc4OP6_jmwAwupNctPc7ZilXLV_FAQ0) or [Baidu Netdisk](https://pan.baidu.com/s/13p1I2j18ZCCACaR_zoFavw) (key:cdux). We also provide original averaged frame (without applying BM3D) in folder "indoor_raw_noisy", named like "frameXX_clean.tiff". The Bayer pattern of raw data is GBRG, the black level is 240, the white level is 2^12-1. You can apply your ISP to raw data to generate sRGB video denoising data.
 
 ## Code
 
@@ -59,7 +59,7 @@ You can download our dataset from [Mega](https://mega.nz/file/Hx8TgLQY)(key:0MoZ
 
 ### Test
 
-- Please download trained model from [Google Drive](https://drive.google.com/open?id=1UdP2Pnn6lHeLC6TUN21sq81XyqL3ujNg) or [Baidu Netdisk](https://pan.baidu.com/s/16nVuu1fGMS0LJqU4z4LAUQ)(key:xssc).
+- Please download trained model from [Google Drive](https://drive.google.com/open?id=1UdP2Pnn6lHeLC6TUN21sq81XyqL3ujNg) or [Baidu Netdisk](https://pan.baidu.com/s/16nVuu1fGMS0LJqU4z4LAUQ) (key:xssc).
 - Test pretrained RViDeNet on indoor test set (scene 7, 8, 9, 10, 11) of CRVD dataset.
   ```
   python test_indoor.py --model pretrain --gpu_id 0  --output_dir ./results/pretrain/ --vis_data True
