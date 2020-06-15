@@ -15,7 +15,7 @@ from utils import *
 parser = argparse.ArgumentParser(description='Testing')
 parser.add_argument('--model', dest='model', type=str, default='finetune', help='model type')
 parser.add_argument('--gpu_id', dest='gpu_id', type=int, default=0, help='gpu id')
-parser.add_argument('--output_dir', type=str, default='/results/finetune/', help='output path')
+parser.add_argument('--output_dir', type=str, default='./results/finetune/', help='output path')
 parser.add_argument('--vis_data', type=bool, default=False, help='whether to visualize noisy and gt data')
 args = parser.parse_args()
 

@@ -420,6 +420,89 @@ class RViDeNet(nn.Module):
         #### activation function
         self.lrelu = nn.LeakyReLU(negative_slope=0.1, inplace=True)
 
+    # faster version
+    def forward(self, x):
+        B, N, C, H, W = x.size()  # N video frames
+        x_center = x[:, self.center, :, :, :].contiguous()
+        ### predenoising
+        predenoised_img = self.pre_denoise(x.view(-1, C, H, W))
+
+        x = x.permute(2, 0, 1, 3, 4).view(C*B, N, 1, H, W)
+        predenoised_img = predenoised_img.view(B, N, C, H, W).permute(2, 0, 1, 3, 4).view(C*B, N, 1, H, W)
+
+        #### extract noisy features
+        #print(x[:, :, 0, :, :].contiguous().shape)
+        L1_fea_noisy = self.lrelu(self.conv_first(x[:, :, 0, :, :].contiguous().view(-1, 1, H, W)))
+        L1_fea_noisy = self.feature_extraction(L1_fea_noisy)
+        # L2
+        L2_fea_noisy = self.lrelu(self.fea_L2_conv1(L1_fea_noisy))
+        L2_fea_noisy = self.lrelu(self.fea_L2_conv2(L2_fea_noisy))
+        # L3
+        L3_fea_noisy = self.lrelu(self.fea_L3_conv1(L2_fea_noisy))
+        L3_fea_noisy = self.lrelu(self.fea_L3_conv2(L3_fea_noisy))
+
+        L1_fea_noisy = L1_fea_noisy.view(C*B, N, -1, H, W)
+        L2_fea_noisy = L2_fea_noisy.view(C*B, N, -1, H // 2, W // 2)
+        L3_fea_noisy = L3_fea_noisy.view(C*B, N, -1, H // 4, W // 4)
+
+        #### extract predenoised features
+        L1_fea_predenoised = self.lrelu(self.conv_first(predenoised_img[:, :, 0, :, :].contiguous().view(-1, 1, H, W)))
+        L1_fea_predenoised = self.feature_extraction(L1_fea_predenoised)
+        # L2
+        L2_fea_predenoised = self.lrelu(self.fea_L2_conv1(L1_fea_predenoised))
+        L2_fea_predenoised = self.lrelu(self.fea_L2_conv2(L2_fea_predenoised))
+        # L3
+        L3_fea_predenoised = self.lrelu(self.fea_L3_conv1(L2_fea_predenoised))
+        L3_fea_predenoised = self.lrelu(self.fea_L3_conv2(L3_fea_predenoised))
+
+        L1_fea_predenoised = L1_fea_predenoised.view(C*B, N, -1, H, W)
+        L2_fea_predenoised = L2_fea_predenoised.view(C*B, N, -1, H // 2, W // 2)
+        L3_fea_predenoised = L3_fea_predenoised.view(C*B, N, -1, H // 4, W // 4)
+
+        #### align
+        # ref feature list
+        ref_fea_l_noisy = [
+            L1_fea_noisy[:, self.center, :, :, :].clone(), L2_fea_noisy[:, self.center, :, :, :].clone(),
+            L3_fea_noisy[:, self.center, :, :, :].clone()
+        ]
+        ref_fea_l_predenoised = [
+            L1_fea_predenoised[:, self.center, :, :, :].clone(), L2_fea_predenoised[:, self.center, :, :, :].clone(),
+            L3_fea_predenoised[:, self.center, :, :, :].clone()
+        ]
+        aligned_noisy_fea = []
+        for i in range(N):
+            nbr_fea_l_noisy = [
+                L1_fea_noisy[:, i, :, :, :].clone(), L2_fea_noisy[:, i, :, :, :].clone(),
+                L3_fea_noisy[:, i, :, :, :].clone()
+            ]
+            nbr_fea_l_predenoised = [
+                L1_fea_predenoised[:, i, :, :, :].clone(), L2_fea_predenoised[:, i, :, :, :].clone(),
+                L3_fea_predenoised[:, i, :, :, :].clone()
+            ]
+            
+            aligned_fea_noisy = self.align(nbr_fea_l_noisy, ref_fea_l_noisy, nbr_fea_l_predenoised, ref_fea_l_predenoised)
+            aligned_noisy_fea.append(aligned_fea_noisy)
+
+        aligned_noisy_fea = torch.stack(aligned_noisy_fea, dim=1)
+        
+        #non-local attention
+        non_local_feature = self.non_local_attention(aligned_noisy_fea)
+
+        #temporal fusion
+        fea = self.temporal_fusion(non_local_feature)# fea shape: (C*B, nf, H, W)
+        _, nf, _, _ = fea.size()
+        fusioned_fea_4channel = fea.view(C, B, nf, H, W).permute(1, 0, 2, 3, 4).view(B, C*nf, H, W)
+
+        #spatial fusion
+        out = self.recon_trunk(fusioned_fea_4channel)
+        out = self.cbam(out)
+        out = self.conv_last(out)
+        base = x_center
+        out += base
+
+        return out
+
+    '''# old version
     def forward(self, x):
         B, N, C, H, W = x.size()  # N video frames
         x_center = x[:, self.center, :, :, :].contiguous()
@@ -503,7 +586,5 @@ class RViDeNet(nn.Module):
         base = x_center
         out += base
 
-        return out
-
-        
+        return out'''
 
