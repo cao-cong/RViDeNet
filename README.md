@@ -69,7 +69,7 @@ You can download our dataset from [MEGA](https://mega.nz/file/Hx8TgLQY#0MoZSqdrQ
   ```
   python test_indoor.py --model finetune --gpu_id 0  --output_dir ./results/finetune/ --vis_data True
   ```
-  You can change parameters 'patch_hstride' and 'patch_wstride' in function 'test_big_size_raw', it will be quicker when inference the whole image.
+  You can change parameters 'patch_hstride' and 'patch_wstride' to be bigger in function 'test_big_size_raw', it will be quicker when inference the whole image.
 
 ### Train
 
