@@ -7,6 +7,7 @@ import torch.optim as optim
 import numpy as np
 import glob
 import cv2
+from scipy.stats import poisson
 from skimage.measure import compare_psnr,compare_ssim
 import time
 
@@ -40,6 +41,52 @@ def depack_gbrg_raw(raw):
             output[2*i+1,2*j+1]=raw[0,i,j,1]
     return output
 
+def pack_rggb_raw(raw):
+    #pack RGGB Bayer raw to 4 channels
+    black_level = 240
+    white_level = 2**12-1
+    im = raw.astype(np.float32)
+    im = np.maximum(im - black_level, 0) / (white_level-black_level)
+
+    im = np.expand_dims(im, axis=2)
+    img_shape = im.shape
+    H = img_shape[0]
+    W = img_shape[1]
+
+    out = np.concatenate((im[0:H:2, 0:W:2, :],
+                          im[0:H:2, 1:W:2, :],
+                          im[1:H:2, 1:W:2, :],
+                          im[1:H:2, 0:W:2, :]), axis=2)
+    return out
+
+def generate_noisy_raw(gt_raw, a, b):
+    """
+    a: sigma_s^2
+    b: sigma_r^2
+    """
+    gaussian_noise_var = b
+    poisson_noisy_img = poisson((gt_raw-240)/a).rvs()*a
+    gaussian_noise = np.sqrt(gaussian_noise_var)*np.random.randn(gt_raw.shape[0], gt_raw.shape[1])
+    noisy_img = poisson_noisy_img + gaussian_noise + 240
+    noisy_img = np.minimum(np.maximum(noisy_img,0), 2**12-1)
+    
+    return noisy_img
+
+def generate_name(number):
+    name = list('000000_raw.tiff')
+    num_str = str(number)
+    for i in range(len(num_str)):
+        name[5-i] = num_str[-(i+1)]
+    name = ''.join(name)
+    return name
+
+def reduce_mean(out_im, gt_im):
+    return torch.abs(out_im - gt_im).mean()
+
+def reduce_mean_with_weight(im1, im2, noisy_level_data):
+    result = torch.abs(im1 - im2) * noisy_level_data * 0.1
+    return result.mean()
+
 def preprocess(raw):
     input_full = raw.transpose((0, 3, 1, 2))
     input_full = torch.from_numpy(input_full)
@@ -64,6 +111,15 @@ def findLastCheckpoint(save_dir):
     else:
         initial_epoch = 0
     return initial_epoch
+
+def bayer_preserving_augmentation(raw, aug_mode):
+    if aug_mode == 0:  # horizontal flip
+        aug_raw = np.flip(raw, axis=1)[:,1:-1]
+    elif aug_mode == 1: # vertical flip
+        aug_raw = np.flip(raw, axis=0)[1:-1,:]
+    else:  # random transpose
+        aug_raw = np.transpose(raw, (1, 0))
+    return aug_raw
 
 def test_big_size_raw(input_data, denoiser, patch_h = 256, patch_w = 256, patch_hstride = 64, patch_wstride = 64):
 
