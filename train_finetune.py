@@ -15,7 +15,7 @@ from utils import *
 
 parser = argparse.ArgumentParser(description='Finetune denoising model')
 parser.add_argument('--gpu_id', dest='gpu_id', type=int, default=0, help='gpu id')
-parser.add_argument('--num_epochs', dest='num_epochs', type=int, default=33, help='num_epochs')
+parser.add_argument('--num_epochs', dest='num_epochs', type=int, default=70, help='num_epochs')
 parser.add_argument('--patch_size', dest='patch_size', type=int, default=128, help='patch_size')
 parser.add_argument('--batch_size', dest='batch_size', type=int, default=1, help='batch_size')
 args = parser.parse_args()
