@@ -73,6 +73,23 @@ You can download our dataset from [MEGA](https://mega.nz/file/Hx8TgLQY#0MoZSqdrQ
 
 ### Train
 
+- Train the ISP module. Please run 'convert_to_tiff.py' and 'rename_gt_png.py' to process SID Sony dataset, then run:
+  ```
+  python train_isp.py --gpu_id 0  --num_epochs 770 --patch_size 512
+  ```
+- Train the PreDenoising module.
+  ```
+  python train_predenoising.py --gpu_id 0  --num_epochs 700 --patch_size 128
+  ```
+- Pretrain RViDeNet on SRVD dataset.
+  ```
+  python train_pretrain.py --gpu_id 0  --num_epochs 33 --patch_size 128 --batch_size 1
+  ```
+- Finetune RViDeNet on CRVD dataset.
+  ```
+  python train_finetune.py --gpu_id 0  --num_epochs 70 --patch_size 128 --batch_size 1
+  ```
+
 ## Citation
 
 If you find our dataset or code helpful in your research or work, please cite our paper:
