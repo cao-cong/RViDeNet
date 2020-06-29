@@ -23,7 +23,7 @@ os.environ["CUDA_VISIBLE_DEVICES"] = str(args.gpu_id)
 
 isp = torch.load('isp/ISP_CNN.pth').cuda()
     
-model = torch.load('model/{}.pth'.format(args.model)).cuda()
+model = torch.load('model/finetune.pth').cuda()
 
 iso_list = [1600,3200,6400,12800,25600]
 
@@ -43,7 +43,7 @@ for iso in iso_list:
     scene_avg_srgb_psnr = 0
     scene_avg_srgb_ssim = 0
 
-    for scene_id in range(7,11+1):
+    for scene_id in range(1,5+1):
 
         context = 'scene{}'.format(scene_id) + '\n'
         f.write(context)
@@ -57,23 +57,23 @@ for iso in iso_list:
             frame_list = []
             for j in range(-1,2):
                 if (i+j)<1:
-                    raw = cv2.imread('./data/CRVD_data/indoor_raw_noisy/scene{}/ISO{}/frame1_noisy0.tiff'.format(scene_id, iso),-1)
+                    raw = cv2.imread('../../my_raw_video_recorded_from_current_HuaweiCamera/indoor_raw_and_srgb_noisy_video_dataset_test/scene{}/ISO{}/frame1_noisy0.tiff'.format(scene_id, iso),-1)
                     input_full = np.expand_dims(pack_gbrg_raw(raw), axis=0)
                     frame_list.append(input_full)
                 elif (i+j)>7:
-                    raw = cv2.imread('./data/CRVD_data/indoor_raw_noisy/scene{}/ISO{}/frame7_noisy0.tiff'.format(scene_id, iso),-1)
+                    raw = cv2.imread('../../my_raw_video_recorded_from_current_HuaweiCamera/indoor_raw_and_srgb_noisy_video_dataset_test/scene{}/ISO{}/frame7_noisy0.tiff'.format(scene_id, iso),-1)
                     input_full = np.expand_dims(pack_gbrg_raw(raw), axis=0)
                     frame_list.append(input_full)
                 else:
-                    raw = cv2.imread('./data/CRVD_data/indoor_raw_noisy/scene{}/ISO{}/frame{}_noisy0.tiff'.format(scene_id, iso, i+j),-1)
+                    raw = cv2.imread('../../my_raw_video_recorded_from_current_HuaweiCamera/indoor_raw_and_srgb_noisy_video_dataset_test/scene{}/ISO{}/frame{}_noisy0.tiff'.format(scene_id, iso, i+j),-1)
                     input_full = np.expand_dims(pack_gbrg_raw(raw), axis=0)
                     frame_list.append(input_full)
             input_data = np.concatenate(frame_list, axis=3)
             
-            test_result = test_big_size_raw(input_data, model, patch_h = 256, patch_w = 256, patch_hstride = 64, patch_wstride = 64)
+            test_result = test_big_size_raw(input_data, model, patch_h = 256, patch_w = 256, patch_h_overlap = 64, patch_w_overlap = 64)
             test_result = depack_gbrg_raw(test_result)
 
-            test_gt = cv2.imread('./data/CRVD_data/indoor_raw_gt/scene{}/ISO{}/frame{}_clean_and_slightly_denoised.tiff'.format(scene_id, iso, i),-1).astype(np.float32)
+            test_gt = cv2.imread('../../my_raw_video_recorded_from_current_HuaweiCamera/indoor_raw_test_gt_slightly_denoised/scene{}/ISO{}/frame{}_clean_and_slightly_denoised.tiff'.format(scene_id, iso, i),-1).astype(np.float32)
             test_gt = (test_gt-240)/(2**12-1-240)
     
             test_raw_psnr = compare_psnr(test_gt,(np.uint16(test_result*(2**12-1-240)+240).astype(np.float32)-240)/(2**12-1-240), data_range=1.0)

@@ -121,7 +121,7 @@ def bayer_preserving_augmentation(raw, aug_mode):
         aug_raw = np.transpose(raw, (1, 0))
     return aug_raw
 
-def test_big_size_raw(input_data, denoiser, patch_h = 256, patch_w = 256, patch_hstride = 64, patch_wstride = 64):
+def test_big_size_raw(input_data, denoiser, patch_h = 256, patch_w = 256, patch_h_overlap = 64, patch_w_overlap = 64):
 
     H = input_data.shape[1]
     W = input_data.shape[2]
@@ -129,14 +129,14 @@ def test_big_size_raw(input_data, denoiser, patch_h = 256, patch_w = 256, patch_
     test_result = np.zeros((input_data.shape[0],H,W,4))
     t0 = time.clock()
     h_index = 1
-    while (patch_h*h_index-patch_hstride*(h_index-1)) < H:
+    while (patch_h*h_index-patch_h_overlap*(h_index-1)) < H:
         test_horizontal_result = np.zeros((input_data.shape[0],patch_h,W,4))
-        h_begin = patch_h*(h_index-1)-patch_hstride*(h_index-1)
-        h_end = patch_h*h_index-patch_hstride*(h_index-1) 
+        h_begin = patch_h*(h_index-1)-patch_h_overlap*(h_index-1)
+        h_end = patch_h*h_index-patch_h_overlap*(h_index-1) 
         w_index = 1
-        while (patch_w*w_index-patch_wstride*(w_index-1)) < W:
-            w_begin = patch_w*(w_index-1)-patch_wstride*(w_index-1)
-            w_end = patch_w*w_index-patch_wstride*(w_index-1)
+        while (patch_w*w_index-patch_w_overlap*(w_index-1)) < W:
+            w_begin = patch_w*(w_index-1)-patch_w_overlap*(w_index-1)
+            w_end = patch_w*w_index-patch_w_overlap*(w_index-1)
             test_patch = input_data[:,h_begin:h_end,w_begin:w_end,:]               
             test_patch = preprocess(test_patch)               
             with torch.no_grad():
@@ -145,9 +145,9 @@ def test_big_size_raw(input_data, denoiser, patch_h = 256, patch_w = 256, patch_
             if w_index == 1:
                 test_horizontal_result[:,:,w_begin:w_end,:] = test_patch_result
             else:
-                for i in range(patch_wstride):
-                    test_horizontal_result[:,:,w_begin+i,:] = test_horizontal_result[:,:,w_begin+i,:]*(patch_wstride-1-i)/(patch_wstride-1)+test_patch_result[:,:,i,:]*i/(patch_wstride-1)
-                test_horizontal_result[:,:,w_begin+patch_wstride:w_end,:] = test_patch_result[:,:,patch_wstride:,:]
+                for i in range(patch_w_overlap):
+                    test_horizontal_result[:,:,w_begin+i,:] = test_horizontal_result[:,:,w_begin+i,:]*(patch_w_overlap-1-i)/(patch_w_overlap-1)+test_patch_result[:,:,i,:]*i/(patch_w_overlap-1)
+                test_horizontal_result[:,:,w_begin+patch_w_overlap:w_end,:] = test_patch_result[:,:,patch_w_overlap:,:]
             w_index += 1                   
     
         test_patch = input_data[:,h_begin:h_end,-patch_w:,:]         
@@ -163,16 +163,16 @@ def test_big_size_raw(input_data, denoiser, patch_h = 256, patch_w = 256, patch_
         if h_index == 1:
             test_result[:,h_begin:h_end,:,:] = test_horizontal_result
         else:
-            for i in range(patch_hstride):
-                test_result[:,h_begin+i,:,:] = test_result[:,h_begin+i,:,:]*(patch_hstride-1-i)/(patch_hstride-1)+test_horizontal_result[:,i,:,:]*i/(patch_hstride-1)
-            test_result[:,h_begin+patch_hstride:h_end,:,:] = test_horizontal_result[:,patch_hstride:,:,:] 
+            for i in range(patch_h_overlap):
+                test_result[:,h_begin+i,:,:] = test_result[:,h_begin+i,:,:]*(patch_h_overlap-1-i)/(patch_h_overlap-1)+test_horizontal_result[:,i,:,:]*i/(patch_h_overlap-1)
+            test_result[:,h_begin+patch_h_overlap:h_end,:,:] = test_horizontal_result[:,patch_h_overlap:,:,:] 
         h_index += 1
 
     test_horizontal_result = np.zeros((input_data.shape[0],patch_h,W,4))
     w_index = 1
-    while (patch_w*w_index-patch_wstride*(w_index-1)) < W:
-        w_begin = patch_w*(w_index-1)-patch_wstride*(w_index-1)
-        w_end = patch_w*w_index-patch_wstride*(w_index-1)
+    while (patch_w*w_index-patch_w_overlap*(w_index-1)) < W:
+        w_begin = patch_w*(w_index-1)-patch_w_overlap*(w_index-1)
+        w_end = patch_w*w_index-patch_w_overlap*(w_index-1)
         test_patch = input_data[:,-patch_h:,w_begin:w_end,:]               
         test_patch = preprocess(test_patch)               
         with torch.no_grad():
@@ -181,9 +181,9 @@ def test_big_size_raw(input_data, denoiser, patch_h = 256, patch_w = 256, patch_
         if w_index == 1:
             test_horizontal_result[:,:,w_begin:w_end,:] = test_patch_result
         else:
-            for i in range(patch_wstride):
-                test_horizontal_result[:,:,w_begin+i,:] = test_horizontal_result[:,:,w_begin+i,:]*(patch_wstride-1-i)/(patch_wstride-1)+test_patch_result[:,:,i,:]*i/(patch_wstride-1)
-            test_horizontal_result[:,:,w_begin+patch_wstride:w_end,:] = test_patch_result[:,:,patch_wstride:,:]   
+            for i in range(patch_w_overlap):
+                test_horizontal_result[:,:,w_begin+i,:] = test_horizontal_result[:,:,w_begin+i,:]*(patch_w_overlap-1-i)/(patch_w_overlap-1)+test_patch_result[:,:,i,:]*i/(patch_w_overlap-1)
+            test_horizontal_result[:,:,w_begin+patch_w_overlap:w_end,:] = test_patch_result[:,:,patch_w_overlap:,:]   
         w_index += 1
 
     test_patch = input_data[:,-patch_h:,-patch_w:,:]         
