@@ -24,14 +24,14 @@ This repository contains official implementation of Supervised Raw Video Denoisi
 </p>
 
 You can download our dataset from [MEGA](https://mega.nz/file/Hx8TgLQY#0MoZSqdrQ_HgIc4OP6_jmwAwupNctPc7ZilXLV_FAQ0) or [Baidu Netdisk](https://pan.baidu.com/s/13p1I2j18ZCCACaR_zoFavw) (key: cdux). We also provide original averaged frame (without applying BM3D) in folder "indoor_raw_noisy", named like "frameXX_clean.tiff". The Bayer pattern of raw data is GBRG, the black level is 240, the white level is 2^12-1. You can apply your ISP to raw data to generate sRGB video denoising data.
-```
+
 Copyright
 The CRVD dataset is available for the academic purpose only. Any researcher who uses the CRVD dataset should obey the licence as below:
 
-All of the CRVD Dataset (data and software) are copyright by Intelligent Imaging and Reconstruction Laboratory (http://tju.iirlab.org/doku.php), Tianjin University and published under the Creative Commons Attribution-NonCommercial-ShareAlike 4.0 License. This means that you must attribute the work in the manner specified by the authors, you may not use this work for commercial purposes and if you alter, transform, or build upon this work, you may distribute the resulting work only under the same license.
+All of the CRVD Dataset (data and software) are copyright by [Intelligent Imaging and Reconstruction](http://tju.iirlab.org/doku.php), Tianjin University and published under the Creative Commons Attribution-NonCommercial-ShareAlike 4.0 License. This means that you must attribute the work in the manner specified by the authors, you may not use this work for commercial purposes and if you alter, transform, or build upon this work, you may distribute the resulting work only under the same license.
 
 This dataset is for non-commercial use only. However, if you find yourself or your personal belongings in the data, please contact us, and we will immediately remove the respective images from our servers.
-```
+
 
 ## Code
 
