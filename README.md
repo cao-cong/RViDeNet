@@ -93,7 +93,7 @@ This dataset is for non-commercial use only. However, if you find yourself or yo
   ```
   python train_pretrain.py --gpu_id 0  --num_epochs 33 --patch_size 128 --batch_size 1
   ```
-- Finetune RViDeNet on CRVD dataset.
+- Finetune RViDeNet on CRVD dataset (scene 1-6).
   ```
   python train_finetune.py --gpu_id 0  --num_epochs 70 --patch_size 128 --batch_size 1
   ```
