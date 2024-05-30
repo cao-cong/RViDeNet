@@ -23,7 +23,7 @@ This repository contains official implementation of Supervised Raw Video Denoisi
   <img width="600" src="https://github.com/cao-cong/RViDeNet/blob/master/images/dataset.png">
 </p>
 
-You can download our dataset from [MEGA](https://mega.nz/file/Hx8TgLQY#0MoZSqdrQ_HgIc4OP6_jmwAwupNctPc7ZilXLV_FAQ0) or [Baidu Netdisk](https://pan.baidu.com/s/13p1I2j18ZCCACaR_zoFavw) (key: cdux). We also provide original averaged frame (without applying BM3D) in folder "indoor_raw_noisy", named like "frameXX_clean.tiff". The Bayer pattern of raw data is GBRG, the black level is 240, the white level is 2^12-1. You can apply your ISP to raw data to generate sRGB video denoising data.
+You can download our dataset from [Google Drive](https://drive.google.com/drive/folders/1TZhNrsJ4tmKaU7b9b_9hkJIhwMi9Tfk3?usp=sharing) or [MEGA](https://mega.nz/file/Hx8TgLQY#0MoZSqdrQ_HgIc4OP6_jmwAwupNctPc7ZilXLV_FAQ0) or [Baidu Netdisk](https://pan.baidu.com/s/13p1I2j18ZCCACaR_zoFavw) (key: cdux). We also provide original averaged frame (without applying BM3D) in folder "indoor_raw_noisy", named like "frameXX_clean.tiff". The Bayer pattern of raw data is GBRG, the black level is 240, the white level is 2^12-1. You can apply your ISP to raw data to generate sRGB video denoising data.
 
 #### Copyright ####
 
